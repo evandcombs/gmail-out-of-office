@@ -1,0 +1,6 @@
+<!-- The name of the extension (should just be gOutOfOffice) -->
+<!ENTITY gmailOutOfOfficeTab.label "gmailOutOfOffice">
+
+<!-- Used for the Sync button on the Address Book toolbar -->
+<!ENTITY outofoffice.label    "Out Of Office">
+<!ENTITY outofoffice.tooltip  "Set out of office autoresponse on mail server">

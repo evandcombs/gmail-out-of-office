@@ -1,0 +1,95 @@
+/* button-outofoffice
+ * button is in the toolbarpalette */
+
+/* First - no mode or iconsize */
+#button-outofoffice {
+    list-style-image:  url("chrome://goutofoffice/skin/icon_24.png");
+    -moz-image-region: rect(0px 24px 24px 0px);
+  }
+  
+  #button-outofoffice[disabled] {
+    list-style-image:  url("chrome://goutofoffice/skin/icon_24.png");
+    -moz-image-region: rect(48px 24px 72px 0px) !important;
+  }
+  
+  /* Second - iconsize only */
+  toolbar[iconsize="large"] #button-outofoffice {
+    list-style-image:  url("chrome://goutofoffice/skin/icon_24.png");
+    -moz-image-region: rect(0px 24px 24px 0px);
+  }
+  
+  toolbar[iconsize="large"] #button-outofoffice[disabled] {
+    list-style-image:  url("chrome://goutofoffice/skin/icon_24.png");
+    -moz-image-region: rect(48px 24px 72px 0px) !important;
+  }
+  
+  toolbar[iconsize="small"] #button-outofoffice {
+    list-style-image:  url("chrome://goutofoffice/skin/icon_16.png");
+    -moz-image-region: rect(0px 16px 16px 0px);
+  }
+  
+  toolbar[iconsize="small"] #button-outofoffice[disabled] {
+    list-style-image:  url("chrome://goutofoffice/skin/icon_16.png");
+    -moz-image-region: rect(32px 16px 48px 0px) !important;
+  }
+  /* Third - mode only */
+  toolbar[mode="full"] #button-outofoffice {
+    list-style-image:  url("chrome://goutofoffice/skin/icon_24.png");
+    -moz-image-region: rect(0px 24px 24px 0px);
+  }
+  
+  toolbar[mode="full"] #button-outofoffice[disabled] {
+    list-style-image:  url("chrome://goutofoffice/skin/icon_24.png");
+    -moz-image-region: rect(48px 24px 72px 0px) !important;
+  }
+  
+  toolbar[mode="icon"] #button-outofoffice {
+    list-style-image:  url("chrome://goutofoffice/skin/icon_24.png");
+    -moz-image-region: rect(0px 24px 24px 0px);
+  }
+  
+  toolbar[mode="icon"] #button-outofoffice[disabled] {
+    list-style-image:  url("chrome://goutofoffice/skin/icon_24.png");
+    -moz-image-region: rect(48px 24px 72px 0px) !important;
+  }
+  
+  /* Fourth mode & iconsize */
+  toolbar[mode="full"][iconsize="large"] #button-outofoffice {
+    list-style-image:  url("chrome://goutofoffice/skin/icon_24.png");
+    -moz-image-region: rect(0px 24px 24px 0px);
+  }
+  
+  toolbar[mode="full"][iconsize="large"] #button-outofoffice[disabled] {
+    list-style-image:  url("chrome://goutofoffice/skin/icon_24.png");
+    -moz-image-region: rect(48px 24px 72px 0px) !important;
+  }
+  
+  toolbar[mode="full"][iconsize="small"] #button-outofoffice {
+    list-style-image:  url("chrome://goutofoffice/skin/icon_16.png");
+    -moz-image-region: rect(0px 16px 16px 0px);
+  }
+  
+  toolbar[mode="full"][iconsize="small"] #button-outofoffice[disabled] {
+    list-style-image:  url("chrome://goutofoffice/skin/icon_16.png");
+    -moz-image-region: rect(32px 16px 48px 0px) !important;
+  }
+  
+  toolbar[mode="icon"][iconsize="large"] #button-outofoffice {
+    list-style-image:  url("chrome://goutofoffice/skin/icon_24.png");
+    -moz-image-region: rect(0px 24px 24px 0px);
+  }
+  
+  toolbar[mode="icon"][iconsize="large"] #button-outofoffice[disabled] {
+    list-style-image:  url("chrome://goutofoffice/skin/icon_24.png");
+    -moz-image-region: rect(48px 24px 72px 0px) !important;
+  }
+  
+  toolbar[mode="icon"][iconsize="small"] #button-outofoffice {
+    list-style-image:  url("chrome://goutofoffice/skin/icon_16.png");
+    -moz-image-region: rect(0px 16px 16px 0px);
+  }
+  
+  toolbar[mode="icon"][iconsize="small"] #button-outofoffice[disabled] {
+    list-style-image:  url("chrome://goutofoffice/skin/icon_16.png");
+    -moz-image-region: rect(32px 16px 48px 0px) !important;
+  }
