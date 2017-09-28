@@ -1,0 +1,50 @@
+<?xml version="1.0"?>
+<?xml-stylesheet href="chrome://global/skin/" type="text/css"?>
+<!--!DOCTYPE overlay SYSTEM "chrome://gmailoutofoffice/locale/en-US/strings.dtd"-->
+
+<dialog 
+    id="gmailOutOfOffice-OutOfOfficeDialog" 
+    xmlns="http://www.mozilla.org/keymaster/gatekeeper/there.is.only.xul"
+    title="Out of Office"
+    buttons="accept, cancel"
+    buttonlabelaccept="Turn On"
+    buttonlabelcancel="Cancel"
+    ondialogaccept="return turnOn();"
+    ondialogcancel="return cancel();">
+    <script type="application/x-javascript" src="chrome://gmailoutofoffice/content/mailview/dialog.js"/>
+
+    <commandset>
+        <command id="cmdCheckToggle" oncommand="checkToggle()"/>
+        <command id="cmdTurnOff" oncommand="turnOff()"/>
+    </commandset>
+
+    <vbox>
+        <vobx id="active" hidden="true" >
+            <groupbox id="hasAutoresponder" align="center">
+                <caption label="Active Autoresponser"/>
+                <hbox>
+                    <label value="Active Autoresponder"/>
+                    <button label="Turn Off" command="cmdTurnOff"/>
+                </hbox>
+            </groupbox>
+        </vobx>
+        <vbox id="composer">
+            <groupbox>
+                <caption label="Message"/>
+                <editor id="editor-outofoffice" editortype="html" src="about:blank" type="content-primary" context="msgComposeContext" height="200"/>
+            </groupbox>
+            <groupbox>
+                <caption>
+                    <checkbox id="checkbox" label="Enable Scheduling" checked="false" command="cmdCheckToggle"/>
+                </caption>
+                <hbox align="center">
+                    <label value="Start Date" control="startDatePicker"/>
+                    <datepicker id="startDatePicker" type="popup" value="2017/09/18" flex="1" disabled="true"/>
+                    <label value="End Date" control="endDatePicker"/>
+                    <datepicker id="endDatePicker" type="popup" value="" flex="1" disabled="true"/>
+                </hbox>
+            </groupbox>
+        </vbox>
+    </vbox>
+
+</dialog>
