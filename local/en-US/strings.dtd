@@ -1,6 +1,18 @@
 <!-- The name of the extension (should just be gOutOfOffice) -->
-<!ENTITY gmailOutOfOfficeTab.label "gmailOutOfOffice">
+<!ENTITY gmailOutOfOffice.label "gmailOutOfOffice">
 
-<!-- Used for the Sync button on the Address Book toolbar -->
-<!ENTITY outofoffice.label    "Out Of Office">
-<!ENTITY outofoffice.tooltip  "Set out of office autoresponse on mail server">
+<!--Overlay Strings-->
+<!ENTITY outofoffice.label          "Out Of Office">
+<!ENTITY outofoffice.tooltip        "Set out of office autoresponse on mail server">
+
+<!--Dialog Strings-->
+<!ENTITY outofofficedialog.title    "Out of Office Autoresponder">
+<!ENTITY enableschedule.label       "Enable Schedule">
+<!ENTITY startdate.label            "Start Date">
+<!ENTITY enddate.label              "End Date">
+<!ENTITY turnon.label               "Turn On">
+<!ENTITY turnoff.label              "Turn Off">
+<!ENTITY cancel.label               "Turn On">
+
+<!--OAuth Strings-->
+<!ENTITY oauth.title                "Gmail Authorization">

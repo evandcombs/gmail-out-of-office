@@ -1,6 +1,5 @@
 <?xml version="1.0"?>
 <?xml-stylesheet href="chrome://global/skin/" type="text/css"?>
-<!--!DOCTYPE overlay SYSTEM "chrome://gmailoutofoffice/locale/en-US/strings.dtd"-->
 
 <dialog 
     id="gmailOutOfOffice-OutOfOfficeDialog" 
@@ -12,6 +11,8 @@
     ondialogaccept="return turnOn();"
     ondialogcancel="return cancel();">
     <script type="application/x-javascript" src="chrome://gmailoutofoffice/content/mailview/dialog.js"/>
+    <script type="application/x-javascript" src="chrome://gmailoutofoffice/content/thunderbird/accounts.js"/>
+    <script type="application/x-javascript" src="chrome://gmailoutofoffice/content/gmailapi/oauth.js"/>
 
     <commandset>
         <command id="cmdCheckToggle" oncommand="checkToggle()"/>
@@ -19,6 +20,12 @@
     </commandset>
 
     <vbox>
+        <hbox id="accountSelection">
+            <menulist id="selectedAccount">
+                <menupopup id="accountList"/>
+            </menulist>
+        </hbox>
+
         <vobx id="active" hidden="true" >
             <groupbox id="hasAutoresponder" align="center">
                 <caption label="Active Autoresponser"/>
@@ -28,11 +35,13 @@
                 </hbox>
             </groupbox>
         </vobx>
+        
         <vbox id="composer">
             <groupbox>
                 <caption label="Message"/>
                 <editor id="editor-outofoffice" editortype="html" src="about:blank" type="content-primary" context="msgComposeContext" height="200"/>
             </groupbox>
+            <spacer flex="1" height="5px"/>
             <groupbox>
                 <caption>
                     <checkbox id="checkbox" label="Enable Scheduling" checked="false" command="cmdCheckToggle"/>

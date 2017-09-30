@@ -1,0 +1,33 @@
+function getAllAccounts(){
+    console.log("Get All Accounts");
+    var loginManager = Components.classes["@mozilla.org/login-manager;1"].getService(Components.interfaces.nsILoginManager);
+    var array = [];
+    var logins = loginManager.getAllLogins();
+    console.log("Logins: " + logins);
+    for (var i = 0; i < logins.length; i++){
+        var hostname = logins[i].hostname;
+        console.log("HostName: " + hostname);
+        if (hostname.indexOf("imap://imap.googlemail.com") === 0 || hostname.indexOf("imap://imap.gmail.com") === 0){
+            array.push({
+                username: logins[i].username,
+                hostname: hostname,
+                password: logins[i].password
+            });
+            console.log(array[array.length - 1]);
+        }
+    }
+    console.log(array);
+    return array;
+};
+
+function getAllAuthorizationTokens(){
+    console.log("Get All Authorization Tokens");
+    var loginManager = Components.classes["@mozilla.org/login-manager;1"].getService(Components.interfaces.nsILoginManager);
+    var objects = {};
+    var logins = loginManager.findLogins({}, HOSTNAME, "", "");
+    for (var i = 0; i <logins.length; i++){
+        console.log("Token: " + logins[i].username + " " + logins[i].password);
+        objects[logins[i].username] = logins[i].password;
+    }
+    return objects;
+};
