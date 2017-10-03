@@ -10,10 +10,12 @@
     buttonlabelcancel="Cancel"
     ondialogaccept="return turnOn();"
     ondialogcancel="return cancel();">
-    <script type="application/x-javascript" src="chrome://gmailoutofoffice/content/mailview/dialog.js"/>
     <script type="application/x-javascript" src="chrome://gmailoutofoffice/content/thunderbird/accounts.js"/>
+    <script type="application/x-javascript" src="chrome://gmailoutofoffice/content/gmailapi/api.js"/>
     <script type="application/x-javascript" src="chrome://gmailoutofoffice/content/gmailapi/oauth.js"/>
     <script type="application/x-javascript" src="chrome://gmailoutofoffice/content/gmailapi/autoresponder.js"/>
+    <script type="application/x-javascript" src="chrome://gmailoutofoffice/content/gmailapi/accesstoken.js"/>
+    <script type="application/x-javascript" src="chrome://gmailoutofoffice/content/mailview/dialog.js"/>
 
     <commandset>
         <command id="cmdCheckToggle" oncommand="checkToggle()"/>

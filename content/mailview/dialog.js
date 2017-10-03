@@ -35,8 +35,7 @@ function selectAccount(email){
 
 /*UI Content*/
 function setContent(email){
-    autoresponder = new AutoResponder();
-    autoresponder.retrieve(email, function(){
+    AutoResponder.retrieve(email, function(){
         console.log("Applying Current Autoresponder");
         setDates(autoresponder.startTime, autoresponder.endTime);
         if (autoresponder.endTime > autoresponder.startTime){

@@ -1,16 +1,16 @@
-function AccessToken(){
-    this.accessToken = "";
-    this.expiration = new Date();
+var AccessToken = {
+    token: "",
+    expiration: new Date(),
 
-    this.getAccessToken = function(email, onFinish){
-        if (accessToken && expiration.getTime() > Date.now()){
-            onFinish(accessToken);
+    getAccessToken: function(email, onFinish){
+        if (AccessToken.token && AccessToken.expiration.getTime() > Date.now()){
+            onFinish(AccessToken.token);
         }
         else{
-            api.sendRefreshTokenRequest(email, function(token){
-                accessToken = token["access_token"];
-                expiration = token["expires_in"];
-                onFinish(accessToken);
+            api.getAccessToken(email, function(token){
+                AccessToken.token = token["access_token"];
+                AccessToken.expiration = token["expires_in"];
+                onFinish(token);
             });
         }
     }

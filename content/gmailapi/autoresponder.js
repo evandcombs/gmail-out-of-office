@@ -1,28 +1,21 @@
-function createNewAutoresponder(){
-    var autoResponder = new AutoResponder();
-    autoResponder.init();
-    return autoResponder;
-};
+var AutoResponder = {
+    enableAutoReply: false,
+    responseSubject: "",
+    responseBodyPlainText: "",
+    responseBodyHtml: "",
+    startTime: 0,
+    endTime: 0,
 
 
-function AutoResponder(){
-    this.enableAutoReply = false;
-    this.responseSubject = "";
-    this.responseBodyPlainText = ""
-    this.responseBodyHtml = "";
-    this.startTime = 0;
-    this.endTime = 0;
-
-
-    this.retrieve = function(email, onFinish){
+    retrieve: function(email, onFinish){
         api.getAutoresponder(email, onFinish);
-    };
-    this.save = function(email, body){
+    },
+    save: function(email, body){
         api.postNewAutoresponder(email, this, function(){});
-    };
+    },
 
 
-    this.toJson = function(){
+    toJson: function(){
         return{
             "enableAutoReply": enableAutoReply,
             "responseSubject": response,
