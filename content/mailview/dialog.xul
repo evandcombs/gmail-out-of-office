@@ -13,6 +13,7 @@
     <script type="application/x-javascript" src="chrome://gmailoutofoffice/content/mailview/dialog.js"/>
     <script type="application/x-javascript" src="chrome://gmailoutofoffice/content/thunderbird/accounts.js"/>
     <script type="application/x-javascript" src="chrome://gmailoutofoffice/content/gmailapi/oauth.js"/>
+    <script type="application/x-javascript" src="chrome://gmailoutofoffice/content/gmailapi/autoresponder.js"/>
 
     <commandset>
         <command id="cmdCheckToggle" oncommand="checkToggle()"/>
@@ -21,7 +22,9 @@
 
     <vbox>
         <hbox id="accountSelection">
-            <menulist id="selectedAccount">
+            <menulist 
+                id="selectedAccount"
+                oncommand="selectionChanged();">
                 <menupopup id="accountList"/>
             </menulist>
         </hbox>

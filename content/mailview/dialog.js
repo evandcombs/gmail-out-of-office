@@ -12,7 +12,6 @@ function onLoad(event){
 
     accounts = getAllAccounts();
     addAccounts(accounts);
-    authorizationTokens = getAllAuthorizationTokens();
     selectAccount(accounts[0].username);
 };
 
@@ -28,36 +27,25 @@ function addAccounts(accounts){
 
 /*Account Switch*/
 function selectAccount(email){
-    var hasToken = checkForAuthorization(email);
-    if (!hasToken){
-        authorize(email), function(){
-            authorizationTokens = getAllAuthorizationTokens();
-            setContent();
-        }
-    }
-    setContent();
-};
-
-function checkForAuthorization(email){
-    console.log("Checking if " + email + " has been authorized.");
-    if (authorizationTokens[email]){
-        console.log("True");
-        return true;
-    }
-    console.log("False");
-    return false;
+    isAuthorized(email, function(){
+        setContent(email);
+    });
 };
 
 
 /*UI Content*/
-function setContent(){
-    //autoresponder = getAutoresponder();
-    /*if (autoresponder){
+function setContent(email){
+    autoresponder = new AutoResponder();
+    autoresponder.retrieve(email, function(){
         console.log("Applying Current Autoresponder");
         setDates(autoresponder.startTime, autoresponder.endTime);
-        enableUI(true);
-        document.getElementById("hasAutoresponder").removeAttribute("hidden");
-    }*/
+        if (autoresponder.endTime > autoresponder.startTime){
+            enableDates();
+        }
+        if (autoresponder.enableAutoReply){
+            document.getElementById("hasAutoresponder").removeAttribute("hidden");
+        }
+    });
 }
 
 function setDates(startDate, endDate){
@@ -67,27 +55,34 @@ function setDates(startDate, endDate){
     }
 };
 
-function enableElements(){
+function enableDates(){
     document.getElementById("startDatePicker").removeAttribute("disabled");
     document.getElementById("endDatePicker").removeAttribute("disabled");
 };
 
-function disbaleElements(){
+function disableDates(){
     document.getElementById("startDatePicker").setAttribute("disabled", "true");
     document.getElementById("endDatePicker").setAttribute("disabled", "true");
 };
 
 
 /*UI Interactions*/
+function selectionChanged(){
+    console.log("Selection Changed Called");
+    var accountsList = document.getElementById("selectedAccount");
+    console.log(accounts[accountsList.selectedIndex].username);
+    selectAccount(accounts[accountsList.selectedIndex].username);
+};
+
 function checkToggle(){
     var checkbox = document.getElementById("checkbox");
     if (checkbox){
         var checked = checkbox.hasAttribute("checked");
         if (checked){
-            enableElements();
+            enableDates();
         }
         else{
-            disbaleElements();
+            disableDates();
         }
     }
 };
