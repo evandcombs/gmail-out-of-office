@@ -25,12 +25,12 @@ function getAllAccounts(){
 };
 
 function getAllRefreshTokens(){
-    console.log("Get All Authorization Tokens");
+    console.log("Getting All Refresh Tokens");
     var loginManager = Components.classes["@mozilla.org/login-manager;1"].getService(Components.interfaces.nsILoginManager);
     var objects = {};
     var logins = loginManager.findLogins({}, HOSTNAME, "", "");
     for (var i = 0; i <logins.length; i++){
-        console.log("Token: " + logins[i].username + " " + logins[i].password);
+        console.log("RefreshToken: " + logins[i].username + " " + logins[i].password);
         objects[logins[i].username] = logins[i].password;
     }
     return objects;

@@ -5,16 +5,19 @@
     id="gmailOutOfOffice-OutOfOfficeDialog" 
     xmlns="http://www.mozilla.org/keymaster/gatekeeper/there.is.only.xul"
     title="Out of Office"
-    buttons="accept, cancel"
+    buttons="accept, extra1, cancel"
     buttonlabelaccept="Turn On"
+    buttonlabelextra1="Turn Off"
     buttonlabelcancel="Cancel"
     ondialogaccept="return turnOn();"
+    ondialogextra1="return turnOff();"
     ondialogcancel="return cancel();">
     <script type="application/x-javascript" src="chrome://gmailoutofoffice/content/thunderbird/accounts.js"/>
     <script type="application/x-javascript" src="chrome://gmailoutofoffice/content/gmailapi/api.js"/>
     <script type="application/x-javascript" src="chrome://gmailoutofoffice/content/gmailapi/oauth.js"/>
     <script type="application/x-javascript" src="chrome://gmailoutofoffice/content/gmailapi/autoresponder.js"/>
     <script type="application/x-javascript" src="chrome://gmailoutofoffice/content/gmailapi/accesstoken.js"/>
+    <script type="application/x-javascript" src="chrome://gmailoutofoffice/content/mailview/overlay.js"/>
     <script type="application/x-javascript" src="chrome://gmailoutofoffice/content/mailview/dialog.js"/>
 
     <commandset>
@@ -29,22 +32,13 @@
                 oncommand="selectionChanged();">
                 <menupopup id="accountList"/>
             </menulist>
+            <label value="Inactive"/>
         </hbox>
-
-        <vobx id="active" hidden="true" >
-            <groupbox id="hasAutoresponder" align="center">
-                <caption label="Active Autoresponser"/>
-                <hbox>
-                    <label value="Active Autoresponder"/>
-                    <button label="Turn Off" command="cmdTurnOff"/>
-                </hbox>
-            </groupbox>
-        </vobx>
         
         <vbox id="composer">
             <groupbox>
                 <caption label="Message"/>
-                <editor id="editor-outofoffice" editortype="html" src="about:blank" type="content-primary" context="msgComposeContext" height="200"/>
+                <editor id="messageEditor" editortype="html" src="about:blank" type="content-primary" height="200"/>
             </groupbox>
             <spacer flex="1" height="5px"/>
             <groupbox>
@@ -53,9 +47,9 @@
                 </caption>
                 <hbox align="center">
                     <label value="Start Date" control="startDatePicker"/>
-                    <datepicker id="startDatePicker" type="popup" value="2017/09/18" flex="1" disabled="true"/>
+                    <datepicker id="startDatePicker" type="popup" flex="1" disabled="true"/>
                     <label value="End Date" control="endDatePicker"/>
-                    <datepicker id="endDatePicker" type="popup" value="" flex="1" disabled="true"/>
+                    <datepicker id="endDatePicker" type="popup" flex="1" disabled="true"/>
                 </hbox>
             </groupbox>
         </vbox>
