@@ -1,0 +1,8 @@
+content     gmailoutofoffice                content/
+skin        gmailoutofoffice    classic/1.0 skin/
+locale      gmailoutofoffice    en-US       locale/en-US/
+
+overlay     chrome://messenger/content/messenger.xul                            chrome://gmailoutofoffice/content/mailview/overlay.xul
+
+style       chrome://gmailoutofoffice/content/mailview/overlay.xul              chrome://gmailoutofoffice/skin/overlay.css
+style       chrome://global/content/customizeToolbar.xul                        chrome://gmailoutofoffice/skin/overlay.css

@@ -1,0 +1,37 @@
+<?xml version="1.0"?>
+<?xml-stylesheet href="chrome://global/skin/" type="text/css"?>
+<!DOCTYPE overlay SYSTEM "chrome://gmailoutofoffice/locale/strings.dtd">
+
+<dialog 
+    id="gmailOutOfOffice-OutOfOfficeDialog" 
+    xmlns="http://www.mozilla.org/keymaster/gatekeeper/there.is.only.xul"
+    title="&outofofficedialog.title;"
+    buttons="accept, cancel"
+    buttonlabelaccept="&turnon.label;"
+    buttonlabelcancel="&cancel.label;"
+    ondialogaccept="return turnOn();"
+    ondialogcancel="return cancel();">
+    <script type="application/x-javascript" src="chrome://gmailoutofoffice/content/messagecomposer/dialog.js"/>
+
+    <commandset>
+        <command id="cmdCheckToggle" oncommand="checkToggle()"/>
+        <command id="cmdTurnOff" oncommand="turnOff()"/>
+    </commandset>
+
+    <vbox>
+        <hbox id="hasAutoresponder" hidden="true" align="center">
+            <label value="Current Autoresponder"/>
+            <button label="&turnoff.label;" command="cmdTurnOff"/>
+        </hbox>
+        <groupbox>
+            <checkbox id="datesCheckbox" label="&enableschedule.label;" checked="false" command="cmdCheckToggle"/>
+            <hbox align="center">
+                <label value="&startdate.label;" control="startDatePicker"/>
+                <datepicker id="startDatePicker" type="popup" value="" flex="1" disabled="true"/> <!--Need to figure out how to set date to Today, I assume Javascript Date object-->
+                <label value="&enddate.label;" control="endDatePicker"/> 
+                <datepicker id="endDatePicker" type="popup" value="" flex="1" disabled="true"/> <!--Need to figure out how to set date to Today, I assume Javascript Date object; Potentially need to set note that if set to the same or previous date as the start date will not result in an automatic turn off-->
+            </hbox>
+        </groupbox>
+    </vbox>
+
+</dialog>
