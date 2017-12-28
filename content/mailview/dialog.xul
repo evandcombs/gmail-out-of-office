@@ -5,13 +5,11 @@
     id="gmailOutOfOffice-OutOfOfficeDialog" 
     xmlns="http://www.mozilla.org/keymaster/gatekeeper/there.is.only.xul"
     title="Out of Office"
-    buttons="accept, extra1, cancel"
+    buttons="accept, extra1"
     buttonlabelaccept="Turn On"
     buttonlabelextra1="Turn Off"
-    buttonlabelcancel="Cancel"
     ondialogaccept="return turnOn();"
-    ondialogextra1="return turnOff();"
-    ondialogcancel="return cancel();">
+    ondialogextra1="return turnOff();">
     <script type="application/x-javascript" src="chrome://gmailoutofoffice/content/thunderbird/accounts.js"/>
     <script type="application/x-javascript" src="chrome://gmailoutofoffice/content/gmailapi/api.js"/>
     <script type="application/x-javascript" src="chrome://gmailoutofoffice/content/gmailapi/oauth.js"/>
@@ -32,7 +30,7 @@
                 oncommand="selectionChanged();">
                 <menupopup id="accountList"/>
             </menulist>
-            <label value="Inactive"/>
+            <label id="statusLabel" value="Inactive"/>
         </hbox>
         
         <vbox id="composer">
