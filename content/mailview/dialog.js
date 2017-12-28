@@ -9,6 +9,8 @@ var startDatePicker;
 var endDatePicker;
 var accountsList;
 var dialog;
+var statusLabel;
+var htmlEditor;
 
 
 /*Initialization*/
@@ -20,10 +22,12 @@ function onLoad(event){
 
     dialog = document.getElementById("gmailOutOfOffice-OutOfOfficeDialog");
     editor = document.getElementById("messageEditor");
+    htmlEditor = editor.getHTMLEditor(editor.contentWindow);
     checkbox = document.getElementById("checkbox");
     startDatePicker = document.getElementById("startDatePicker");
     endDatePicker = document.getElementById("endDatePicker");
     accountsList = document.getElementById("selectedAccount");
+    statusLabel = document.getElementById("statusLabel");
 
     dialog.setAttribute("title", INACTIVE_TITLE);
     editor.contentDocument.designMode = 'on';
@@ -57,7 +61,7 @@ function setContent(email){
     AutoResponder.retrieve(email, function(){
         console.log("Applying Current Autoresponder");
         if (AutoResponder.enableAutoReply){
-            dialog.setAttribute("title", ACTIVE_TITLE);
+            displayOn();
             if (AutoResponder.endTime){
                 checkbox.setAttribute("checked", true);
                 enableDates();
@@ -68,8 +72,10 @@ function setContent(email){
                 setDates(newStartDate, newEndDate);
             }
             console.log(AutoResponder.responseBodyHtml);
-            var htmlEditor = editor.getHTMLEditor(editor.contentWindow);
-            htmlEditor.insertHTML(AutoResponder.responseBodyHtml);
+            htmlEditor.rebuildDocumentFromSource(AutoResponder.responseBodyHtml);
+        }
+        else{
+            displayOff();
         }
     });
 }
@@ -107,6 +113,7 @@ function disableDates(){
 function selectionChanged(){
     console.log("Selection Changed Called");
     console.log(accounts[accountsList.selectedIndex].username);
+    AccessToken.expiration = 0;
     selectAccount(accounts[accountsList.selectedIndex].username);
 };
 
@@ -125,18 +132,14 @@ function checkToggle(){
 function turnOn(){
     //Send autoresponse data to Google
     console.log("Turn On was pressed.")
-    dialog.setAttribute("title", ACTIVE_TITLE);
-    AutoResponder.enableAutoReply = true;
-    var htmlEditor = editor.getHTMLEditor(editor.contentWindow);
+    displayOn();
     AutoResponder.responseBodyHtml = htmlEditor.document.body.innerHTML;
     if (AutoResponder.enableEndTime){
         AutoResponder.startTime = startDatePicker.dateValue.getTime();
         AutoResponder.endTime = endDatePicker.dateValue.getTime();
     }
     console.log(AutoResponder.toJson());
-    AutoResponder.save(accounts[accountsList.selectedIndex].username, function(){
-        window.close();
-    });
+    AutoResponder.save(accounts[accountsList.selectedIndex].username, function(){});
 
     return false;
 };
@@ -144,16 +147,22 @@ function turnOn(){
 function turnOff(){
     //Turns off the current Autoresponder
     console.log("Turning Autoresponder Off.");
-    dialog.setAttribute("title", INACTIVE_TITLE);
+    displayOff();
     AutoResponder.enableAutoReply = false;
-    AutoResponder.save(accounts[accountsList.selectedIndex].username, function(){
-        window.close();
-    });
+    AutoResponder.save(accounts[accountsList.selectedIndex].username, function(){});
 
     return false;
 };
 
-function cancel(){
-    console.log("Cancel was pressed.")
-    return true;
+function displayOn(){ 
+    dialog.setAttribute("title", ACTIVE_TITLE); 
+    AutoResponder.enableAutoReply = true; 
+    statusLabel.value = "Active"; 
+}; 
+
+function displayOff(){ 
+    dialog.setAttribute("title", INACTIVE_TITLE); 
+    AutoResponder.enableAutoReply = false; 
+    statusLabel.value = "Inactive";  
+    htmlEditor.rebuildDocumentFromSource("<HTML/>") 
 };
