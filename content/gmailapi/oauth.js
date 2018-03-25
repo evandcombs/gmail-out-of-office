@@ -3,7 +3,7 @@ var SCOPES = "https://www.googleapis.com/auth/gmail.settings.basic";
 var REDIRECT_URL = "urn:ietf:wg:oauth:2.0:oob";
 var RESPONSE_TYPE = "code";
 var CLIENT_ID = "868436546296-8rs1rtd5hddlg5r3f9d7fk6ljt5fnt93.apps.googleusercontent.com";
-var CLIENT_SECRET = "b7CjHxkVKVyYsWJm0v-FHUYH";
+var CLIENT_SECRET = secret;
 var SUCCCESS = "Success code=";
 
 function createAuthorizationURL(email){

@@ -14,3 +14,5 @@ skin/Thumbs\.db
 Thumbs\.db
 
 Thunderbird-icon\.png
+
+content/gmailapi/secret\.js
